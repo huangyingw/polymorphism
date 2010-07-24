@@ -2,38 +2,41 @@
 #include <iostream>
 using namespace std;
 
-class CPolygon 
+class Vehicle
 {
-  protected:
-    int width, height;
-  public:
-    void set_values(int a, int b)
-    	{ width=a; height=b; }
+	public:
+    virtual void run() const = 0;
 };
 
-class CRectangle: public CPolygon 
+class Car: public Vehicle
 {
-  public:
-    int area ()
-    	{ return (width * height); }
+	public:
+    virtual void run() const
+    {
+        std::cout << "run a car\n";
+    }
 };
 
-class CTriangle: public CPolygon 
+class Airplane: public Vehicle
 {
-  public:
-    int area ()
-    	{ return (width * height / 2); }
-};
+	public:
+    virtual void run() const
+    {
+        std::cout << "run a airplane\n";
+    }
+}; 
+
+void run_vehicle(const Vehicle* vehicle)
+{
+	vehicle->run();// 根据vehicle的具体类型调用对应的run()
+}
+
 
 int main () 
 {
-  CRectangle rect;
-  CTriangle trgl;
-  CPolygon * ppoly1 = &rect;
-  CPolygon * ppoly2 = &trgl;
-  ppoly1->set_values (4,5);
-  ppoly2->set_values (4,5);
-  cout << rect.area() << endl;
-  cout << trgl.area() << endl;
+  Car car;
+  Airplane airplane;
+  run_vehicle(&car);         // 调用Car::run()
+  run_vehicle(&airplane);    // 调用Airplane::run()
   return 0;
 }
