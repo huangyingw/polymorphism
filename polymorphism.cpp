@@ -6,6 +6,7 @@ class Vehicle
 {
 	public:
     virtual void run() const = 0;
+    virtual ~Vehicle(){cout<<"desconstructed in base"<<endl;};
 };
 
 class Car: public Vehicle
@@ -15,6 +16,7 @@ class Car: public Vehicle
     {
         std::cout << "run a car\n";
     }
+    ~Car(){cout<<"desconstructed in Car"<<endl;};
 };
 
 class Airplane: public Vehicle
@@ -24,6 +26,7 @@ class Airplane: public Vehicle
     {
         std::cout << "run a airplane\n";
     }
+    ~Airplane(){cout<<"desconstructed in Airplane"<<endl;};
 }; 
 
 void run_vehicle(const Vehicle* vehicle)
