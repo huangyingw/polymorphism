@@ -1,6 +1,3 @@
-run : polymorphism.o
-	g++ -o run polymorphism.o
-polymorphism.o : polymorphism.cpp
-	g++ -c polymorphism.cpp
-clean :
-	rm run polymorphism.o
+OBJECTS = polymorphism.exe
+include ../../GNU_makefile_template
+LOCFLAGS = -I../polymorphism
